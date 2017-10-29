@@ -27,12 +27,18 @@ class ViewController: UIViewController {
     
     @IBAction  func generateQRCode() {
         
-        if let text = textField.text{
+        if textField.text != "" {
             let qrCodeGeneratorObject = QRImageGenerator.init()
-            
-            let qrCodeImage = qrCodeGeneratorObject.generateQRImage(text: text)
-            
+            let qrCodeImage = qrCodeGeneratorObject.generateQRImage(text: textField.text!)
             self.qrCodeImageView.image = qrCodeImage
+        }else{
+            let alertController = UIAlertController.init(title: nil, message: "Enter some text", preferredStyle: .alert)
+            let  okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: {
+                
+            })
         }
     }
     
