@@ -1,2 +1,2 @@
 # DRCodeGenerator
-Library for generating QRCodes from the text
+Library for generating QRCode from the text
