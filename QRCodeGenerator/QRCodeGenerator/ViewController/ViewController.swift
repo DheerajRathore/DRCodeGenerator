@@ -12,32 +12,30 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var qrCodeImageView : UIImageView!
+    @IBOutlet weak var textField : UITextField!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.generateQRCode()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func generateQRCode() {
+    
+    @IBAction  func generateQRCode() {
         
-        let qrCodeGeneratorObject = QRImageGenerator.init()
-        
-        let qrCodeImage = qrCodeGeneratorObject.generateQRImage(text: "Sample string")
-        
-        if  qrCodeImage != nil{
+        if let text = textField.text{
+            let qrCodeGeneratorObject = QRImageGenerator.init()
+            
+            let qrCodeImage = qrCodeGeneratorObject.generateQRImage(text: text)
             
             self.qrCodeImageView.image = qrCodeImage
         }
-        
     }
-
+    
+    
 }
 

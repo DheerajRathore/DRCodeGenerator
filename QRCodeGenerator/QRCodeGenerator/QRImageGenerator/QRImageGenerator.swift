@@ -22,12 +22,11 @@ class QRImageGenerator: NSObject {
        -return:
             UIimage object is returned which contain's QR code for the text.
     */
-    func generateQRImage(text : String?) -> UIImage? {
+    func generateQRImage(text : String) -> UIImage {
         
-        if let  textToBeConvertedToQRImage = text{
-            
+        
             ///Convert text to data
-            let data = textToBeConvertedToQRImage.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
+            let data = text.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
             
             ///Add filters to generate QRImage.
             let filter = CIFilter(name: "CIQRCodeGenerator")
@@ -45,10 +44,8 @@ class QRImageGenerator: NSObject {
             qrCodeImage = UIImage.init(cgImage: cgImage)
             
             ///return qr code image.
-            return qrCodeImage
-        }
+        return qrCodeImage!
         
-        return nil
     }
 }
 
