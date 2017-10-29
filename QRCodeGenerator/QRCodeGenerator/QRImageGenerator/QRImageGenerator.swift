@@ -38,7 +38,11 @@ class QRImageGenerator: NSObject {
             qrcodeCIImage = filter?.outputImage
            
             ///Get UIImage object from CIImage
-            qrCodeImage = UIImage.init(cgImage: qrcodeCIImage as! CGImage)
+           // qrCodeImage = UIImage.init(cgImage: qrcodeCIImage as! CGImage)
+            
+            let context:CIContext = CIContext.init(options: nil)
+            let cgImage:CGImage = context.createCGImage(qrcodeCIImage, from: qrcodeCIImage.extent)!
+            qrCodeImage = UIImage.init(cgImage: cgImage)
             
             ///return qr code image.
             return qrCodeImage
